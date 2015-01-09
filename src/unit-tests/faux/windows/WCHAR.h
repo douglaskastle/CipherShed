@@ -1,6 +1,8 @@
 #ifndef _faux_windows_wchar_h_
 #define _faux_windows_wchar_h_
 
+#include "CONST.h"
+
 #ifndef __nullterminated 
 #define __nullterminated 
 #endif
@@ -14,8 +16,11 @@
 #endif
 
 #define UNALIGNED
-
+#ifdef _MSC_VER
 typedef unsigned short WCHAR;
+#else
+typedef wchar_t WCHAR;
+#endif
 //typedef wchar_t WCHAR;    // wc,   16-bit UNICODE character
 
 typedef WCHAR *PWCHAR, *LPWCH, *PWCH;

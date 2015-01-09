@@ -95,7 +95,7 @@
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
-			ManagedExtensions="3"
+			ManagedExtensions="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -117,7 +117,7 @@
 				Name="VCCLCompilerTool"
 				PreprocessorDefinitions="CS_UNITTESTING"
 				RuntimeLibrary="2"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -203,7 +203,83 @@
 							CompileAsManaged="0"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							CompileAsManaged="0"
+						/>
+					</FileConfiguration>
 				</File>
+				<File
+					RelativePath="..\Common\Endian.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							CompileAsManaged="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							CompileAsManaged="0"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\Common\Password.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							CompileAsManaged="0"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							CompileAsManaged="0"
+						/>
+					</FileConfiguration>
+				</File>
+				<Filter
+					Name="util"
+					>
+					<Filter
+						Name="unicode"
+						>
+						<File
+							RelativePath="..\Common\util\unicode\ConvertUTF.c"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									CompileAsManaged="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									CompileAsManaged="0"
+								/>
+							</FileConfiguration>
+						</File>
+					</Filter>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="unit-tests"
@@ -229,6 +305,26 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									CompileAsManaged="1"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath=".\tests\algo\endianTest.cpp"
+							>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									CompileAsManaged="1"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath=".\tests\algo\passwordTest.cpp"
@@ -240,6 +336,14 @@
 						>
 						<File
 							RelativePath=".\tests\io\headerTest.cpp"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="lib"
+						>
+						<File
+							RelativePath=".\tests\lib\unicodeTest.cpp"
 							>
 						</File>
 					</Filter>
@@ -285,6 +389,14 @@
 						<File
 							RelativePath=".\faux\windows\GetWindowText.cpp"
 							>
+						</File>
+						<File
+							RelativePath=".\faux\windows\GetWindowTextLength.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\faux\windows\MessageBox.c"
+							>
 							<FileConfiguration
 								Name="Debug|Win32"
 								>
@@ -293,10 +405,14 @@
 									CompileAsManaged="0"
 								/>
 							</FileConfiguration>
-						</File>
-						<File
-							RelativePath=".\faux\windows\GetWindowTextLength.cpp"
-							>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									CompileAsManaged="0"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath=".\faux\windows\SetFilePointer.cpp"
@@ -308,6 +424,14 @@
 						</File>
 						<File
 							RelativePath=".\faux\windows\SetLastError.cpp"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="ciphershed"
+						>
+						<File
+							RelativePath=".\faux\ciphershed\wip.cpp"
 							>
 						</File>
 					</Filter>
@@ -323,6 +447,10 @@
 				Name="Common"
 				>
 				<File
+					RelativePath="..\Common\constants.h"
+					>
+				</File>
+				<File
 					RelativePath="..\Common\Crc.h"
 					>
 				</File>
@@ -331,9 +459,33 @@
 					>
 				</File>
 				<File
+					RelativePath="..\Common\Password.h"
+					>
+				</File>
+				<File
 					RelativePath="..\Common\Tcdefs.h"
 					>
 				</File>
+				<Filter
+					Name="types"
+					>
+					<File
+						RelativePath="..\Common\types\password.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="util"
+					>
+					<Filter
+						Name="unicode"
+						>
+						<File
+							RelativePath="..\Common\util\unicode\ConvertUTF.h"
+							>
+						</File>
+					</Filter>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="unit-tests"
@@ -525,7 +677,15 @@
 							>
 						</File>
 						<File
+							RelativePath=".\faux\windows\MessageBox.h"
+							>
+						</File>
+						<File
 							RelativePath=".\faux\windows\NEAR.h"
+							>
+						</File>
+						<File
+							RelativePath=".\faux\windows\NULL.h"
 							>
 						</File>
 						<File
@@ -565,11 +725,11 @@
 							>
 						</File>
 						<File
-							RelativePath=".\faux\windows\UINT_PTR.h"
+							RelativePath=".\faux\windows\UINT.h"
 							>
 						</File>
 						<File
-							RelativePath=".\faux\windows\UNIT.h"
+							RelativePath=".\faux\windows\UINT_PTR.h"
 							>
 						</File>
 						<File
