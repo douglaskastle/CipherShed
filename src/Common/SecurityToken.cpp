@@ -11,6 +11,7 @@
 
 #if !defined (TC_WINDOWS) || defined (TC_PROTOTYPE)
 #	include "../Platform/SerializerFactory.h"
+using namespace std;
 #	include "../Platform/StringConverter.h"
 #	include "../Platform/SystemException.h"
 #else
@@ -26,6 +27,12 @@
 
 #ifndef burn
 #	define burn Memory::Erase
+#endif
+
+#include <sstream>
+
+#ifdef CS_UNITTESTING
+#include <dlfcn.h>
 #endif
 
 using namespace std;

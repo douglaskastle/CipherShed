@@ -401,6 +401,62 @@
 					RelativePath="..\Common\Xts.c"
 					>
 				</File>
+				<Filter
+					Name="util"
+					>
+					<File
+						RelativePath="..\Common\util\csstringutil.cpp"
+						>
+					</File>
+					<Filter
+						Name="unicode"
+						>
+						<File
+							RelativePath="..\Common\util\unicode\ConvertUTF.c"
+							>
+						</File>
+						<File
+							RelativePath="..\Common\util\unicode\strcmpw.c"
+							>
+						</File>
+					</Filter>
+				</Filter>
+				<Filter
+					Name="dialog"
+					>
+					<File
+						RelativePath="..\Common\dialog\cursor.c"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\errors.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\userperms.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="volume"
+					>
+					<File
+						RelativePath="..\Common\volume\volutil.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="fsutil"
+					>
+					<File
+						RelativePath="..\Common\fsutil\diskutil.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\fsutil\fsutil.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -497,11 +553,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Common\Resource.h"
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File
-				RelativePath=".\resource.h"
+				RelativePath="..\Common\Resource.h"
 				>
 			</File>
 			<File
@@ -540,6 +596,62 @@
 				RelativePath="..\Common\Xts.h"
 				>
 			</File>
+			<Filter
+				Name="Common"
+				>
+				<Filter
+					Name="dialog"
+					>
+					<File
+						RelativePath="..\Common\dialog\cursor.h"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\errors.h"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\userperms.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="util"
+					>
+					<File
+						RelativePath="..\Common\util\csstringutil.h"
+						>
+					</File>
+					<Filter
+						Name="unicode"
+						>
+						<File
+							RelativePath="..\Common\util\unicode\strcmpw.h"
+							>
+						</File>
+					</Filter>
+				</Filter>
+				<Filter
+					Name="volume"
+					>
+					<File
+						RelativePath="..\Common\volume\volutil.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="fsutil"
+					>
+					<File
+						RelativePath="..\Common\fsutil\diskutil.h"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\fsutil\fsutil.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -571,6 +683,18 @@
 				Name="Common"
 				>
 				<File
+					RelativePath="..\Boot\Windows\Release_Twofish\BootLoader.com.gz"
+					>
+				</File>
+				<File
+					RelativePath="..\Boot\Windows\Rescue_Serpent\BootLoader.com.gz"
+					>
+				</File>
+				<File
+					RelativePath="..\Boot\Windows\Rescue_AES\BootLoader.com.gz"
+					>
+				</File>
+				<File
 					RelativePath="..\Boot\Windows\Rescue\BootLoader.com.gz"
 					>
 				</File>
@@ -588,18 +712,6 @@
 				</File>
 				<File
 					RelativePath="..\Boot\Windows\Release\BootLoader.com.gz"
-					>
-				</File>
-				<File
-					RelativePath="..\Boot\Windows\Release_Twofish\BootLoader.com.gz"
-					>
-				</File>
-				<File
-					RelativePath="..\Boot\Windows\Rescue_Serpent\BootLoader.com.gz"
-					>
-				</File>
-				<File
-					RelativePath="..\Boot\Windows\Rescue_AES\BootLoader.com.gz"
 					>
 				</File>
 				<File

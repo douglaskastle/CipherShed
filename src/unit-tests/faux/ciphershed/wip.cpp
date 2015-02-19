@@ -13,19 +13,27 @@
 
 #ifdef CS_UNITTESTING
 //Dlgcode.c
+HANDLE hDriver = INVALID_HANDLE_VALUE;
+int CurrentOSMajor = 0;
+int CurrentOSMinor = 0;
+int CurrentOSServicePack = 0;
+HINSTANCE hInst = NULL;
 BOOL bPreserveTimestamp = TRUE;
-BOOL UacElevated = FALSE;
 wchar_t *lpszTitle = NULL;
-void WaitCursor (){}
-BOOL IsUacSupported (){return 0;}
-void EnableElevatedCursorChange (HWND parent){}
-void CreateFullVolumePath (char *lpszDiskFile, const char *lpszFileName, BOOL * bDevice){}
-void NormalCursor (){}
-void handleError (HWND hwndDlg, int code){}
 int RemoveFakeDosName (char *lpszDiskFile, char *lpszDosDevice){return 0;}
 BOOL GetPartitionInfo (const char *deviceName, PPARTITION_INFORMATION rpartInfo){return 0;}
 int FakeDosNameForDevice (const char *lpszDiskFile, char *lpszDosDevice, char *lpszCFDevice, BOOL bNameOnly){return 0;}
 void UserEnrichRandomPool (HWND hwndDlg){}
+
+// secondary...
+void HandleDriveNotReadyError(){}
+BOOL CheckCapsLock (HWND hwnd, BOOL quiet){return 0;}
+BOOL IsDiskError (DWORD error){return 0;}
+BOOL KeyFilesEnable = FALSE;
+HWND MainDlg = NULL;
+OSVersionEnum nCurrentOS = WIN_UNKNOWN;
+
+
 //Volumes.c
 BOOL ReadEffectiveVolumeHeader (BOOL device, HANDLE fileHandle, byte *header, DWORD *bytesRead){return 0;}
 int ReadVolumeHeader (BOOL bBoot, char *encryptedHeader, Password *password, PCRYPTO_INFO *retInfo, CRYPTO_INFO *retHeaderCryptoInfo){return 0;}
@@ -40,4 +48,22 @@ void RandSetHashFunction (int hash_algo_id){}
 void RandStop (BOOL freePool){}
 //Crypto.c
 void crypto_close (PCRYPTO_INFO cryptoInfo){}
+
+//Aescrypt.c
+uint_32t t_fn[4][256];
+uint_32t t_fl[4][256];
+uint_32t t_in[4][256];
+uint_32t t_il[4][256];
+uint_32t t_im[4][256];
+uint_32t t_rc[(5 * (16 / 4 - 2))];
+
+//csstrinutil.cpp
+void ToUNICODE (char *lpszText){}
+void UpperCaseCopy (char *lpszDest, const char *lpszSource){}
+std::string WideToSingleString (const std::wstring &wideString){return 0;}
+std::wstring SingleStringToWide (const std::string &singleString){return 0;}
+
+//fsutil.cpp
+BOOL ResolveSymbolicLink (const wchar_t *symLinkName, PWSTR targetName){return 0;}
+
 #endif

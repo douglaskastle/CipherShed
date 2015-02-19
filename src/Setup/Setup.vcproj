@@ -187,7 +187,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy Release\CipherShedSetup.exe &quot;..\Release\Setup Files\CipherShed Setup.exe&quot;&#x0D;&#x0A;copy ..\..\doc\userdocs\guide\CipherShed-User-Guide-0.7.3.0.pdf &quot;..\Release\Setup Files\CipherShed User Guide.pdf&quot;&#x0D;&#x0A;copy ..\License.txt &quot;..\Release\Setup Files\&quot;"
+				CommandLine="copy Release\CipherShedSetup.exe &quot;..\Release\Setup Files\CipherShed Setup.exe&quot;&#x0D;&#x0A;copy ..\..\doc\userdocs\guide\CipherShed-User-Guide-0.7.3.0.pdf &quot;..\Release\Setup Files\CipherShed User Guide.pdf&quot;&#x0D;&#x0A;copy ..\License.txt &quot;..\Release\Setup Files\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -326,6 +326,50 @@
 					RelativePath="..\Common\Registry.c"
 					>
 				</File>
+				<Filter
+					Name="dialog"
+					>
+					<File
+						RelativePath="..\Common\dialog\cursor.c"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\errors.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\userperms.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="util"
+					>
+					<File
+						RelativePath="..\Common\util\csstringutil.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="volume"
+					>
+					<File
+						RelativePath="..\Common\volume\volutil.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="fsutil"
+					>
+					<File
+						RelativePath="..\Common\fsutil\diskutil.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\fsutil\fsutil.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -401,6 +445,54 @@
 				RelativePath=".\Wizard.h"
 				>
 			</File>
+			<Filter
+				Name="Common"
+				>
+				<Filter
+					Name="dialog"
+					>
+					<File
+						RelativePath="..\Common\dialog\cursor.h"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\errors.h"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\dialog\userperms.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="util"
+					>
+					<File
+						RelativePath="..\Common\util\csstringutil.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="volume"
+					>
+					<File
+						RelativePath="..\Common\volume\volutil.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="fsutil"
+					>
+					<File
+						RelativePath="..\Common\fsutil\diskutil.h"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\fsutil\fsutil.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"

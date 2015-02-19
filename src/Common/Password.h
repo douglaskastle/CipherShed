@@ -54,10 +54,10 @@ extern "C" {
 #if defined(_WIN32) && !defined(TC_WINDOWS_DRIVER) || defined(CS_UNITTESTING)
 
 void VerifyPasswordAndUpdate2(HWND hwndDlg, HWND hButton, HWND hPassword, HWND hVerify, unsigned char *szPassword, int sizeOfPassword, char *szVerify, int sizeOfVerify, BOOL keyFilesEnabled);
-void VerifyPasswordAndUpdate ( HWND hwndDlg , HWND hButton , HWND hPassword , HWND hVerify , unsigned char *szPassword , char *szVerify, BOOL keyFilesEnabled );
 BOOL CheckPasswordLength (HWND hwndDlg, HWND hwndItem);		
 BOOL CheckPasswordCharEncoding (HWND hPassword, Password *ptrPw);			
 int ChangePwd (char *lpszVolume, Password *oldPassword, Password *newPassword, int pkcs5, HWND hwndDlg);
+BOOL CheckPasswordLengthAlertTitle (HWND hwndDlg, wchar_t* title, HWND hwndItem);
 
 #endif	// defined(_WIN32) && !defined(TC_WINDOWS_DRIVER)
 

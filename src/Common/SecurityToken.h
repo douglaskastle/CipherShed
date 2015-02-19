@@ -44,6 +44,7 @@
 
 #endif // !TC_WINDOWS
 
+#include <memory>
 
 #define TC_SECURITY_TOKEN_KEYFILE_URL_PREFIX L"token://"
 #define TC_SECURITY_TOKEN_KEYFILE_URL_SLOT L"slot"
