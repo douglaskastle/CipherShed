@@ -104,7 +104,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="md &quot;..\Debug\Setup Files&quot; 2&gt;NUL:&#x0D;&#x0A;copy Debug\CipherShed.exe &quot;..\Debug\Setup Files&quot; &gt;NUL:&#x0D;&#x0A;"
+				CommandLine="md &quot;..\Debug\Setup Files&quot; 2&gt;NUL:&#x0D;&#x0A;copy Debug\CipherShed.exe &quot;..\Debug\Setup Files&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -194,7 +194,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy Release\CipherShed.exe &quot;..\Release\Setup Files&quot;"
+				CommandLine="md &quot;..\Release\Setup Files&quot; 2&gt;NUL:&#x0D;&#x0A;copy Release\CipherShed.exe &quot;..\Release\Setup Files&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -390,6 +390,14 @@
 					>
 					<File
 						RelativePath="..\Common\util\csstringutil.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\util\memory.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Common\util\process.cpp"
 						>
 					</File>
 					<Filter
@@ -678,18 +686,6 @@
 				Name="Common"
 				>
 				<File
-					RelativePath="..\Boot\Windows\Rescue_Twofish\BootLoader.com.gz"
-					>
-				</File>
-				<File
-					RelativePath="..\Boot\Windows\Release_Serpent\BootLoader.com.gz"
-					>
-				</File>
-				<File
-					RelativePath="..\Boot\Windows\Release_AES\BootLoader.com.gz"
-					>
-				</File>
-				<File
 					RelativePath="..\Boot\Windows\Release\BootLoader.com.gz"
 					>
 				</File>
@@ -707,6 +703,18 @@
 				</File>
 				<File
 					RelativePath="..\Boot\Windows\Rescue\BootLoader.com.gz"
+					>
+				</File>
+				<File
+					RelativePath="..\Boot\Windows\Rescue_Twofish\BootLoader.com.gz"
+					>
+				</File>
+				<File
+					RelativePath="..\Boot\Windows\Release_Serpent\BootLoader.com.gz"
+					>
+				</File>
+				<File
+					RelativePath="..\Boot\Windows\Release_AES\BootLoader.com.gz"
 					>
 				</File>
 				<File
