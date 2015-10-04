@@ -1858,6 +1858,7 @@ void TCGetDosNameFromNumber (LPWSTR dosname, int nDriveNo)
 	int j = nDriveNo + (WCHAR) 'A';
 
 	tmp[0] = (short) j;
+	//This is a risk point from CVE-2015-7358, there are global and per user mounts, need more logic here.
 	wcscpy (dosname, (LPWSTR) DOS_MOUNT_PREFIX);
 	wcscat (dosname, tmp);
 }
@@ -2508,7 +2509,27 @@ NTSTATUS MountManagerUnmount (int nDosDriveNo)
 
 	return ntStatus;
 }
+/**
+This properly obtains the token from the security subject context. 
 
+@see https://code.google.com/p/google-security-research/issues/detail?id=537
+
+*/
+PACCESS_TOKEN getToken(SECURITY_SUBJECT_CONTEXT* psubContext)
+{
+	if (!psubContext) 
+	{
+		return NULL;
+	}
+	else if (psubContext->ClientToken && psubContext->ImpersonationLevel >= SecurityImpersonation)
+	{
+		return psubContext->ClientToken;
+	}
+	else
+	{
+		return psubContext->PrimaryToken;
+	}
+}
 
 NTSTATUS MountDevice (PDEVICE_OBJECT DeviceObject, MOUNT_STRUCT *mount)
 {
@@ -2547,7 +2568,8 @@ NTSTATUS MountDevice (PDEVICE_OBJECT DeviceObject, MOUNT_STRUCT *mount)
 		PACCESS_TOKEN accessToken;
 
 		SeCaptureSubjectContext (&subContext);
-		accessToken = SeQuerySubjectContextToken (&subContext);
+		SeLockSubjectContext(&subContext);
+		accessToken=getToken(&subContext);
 
 		if (!accessToken)
 		{
@@ -2572,6 +2594,7 @@ NTSTATUS MountDevice (PDEVICE_OBJECT DeviceObject, MOUNT_STRUCT *mount)
 			}
 		}
 
+		SeUnlockSubjectContext(&subContext);
 		SeReleaseSubjectContext (&subContext);
 
 		if (NT_SUCCESS (ntStatus))
@@ -2879,25 +2902,39 @@ BOOL UserCanAccessDriveDevice ()
 	return IsAccessibleByUser (&name, FALSE);
 }
 
+/**
+Cehck if a drive leter is available. 
 
+CVE-2015-7358: Need to add a parameter to this function global/private drives.
+
+@see https://code.google.com/p/google-security-research/issues/detail?id=538
+*/
 BOOL IsDriveLetterAvailable (int nDosDriveNo)
 {
 	OBJECT_ATTRIBUTES objectAttributes;
 	UNICODE_STRING objectName;
 	WCHAR link[128];
 	HANDLE handle;
+	NTSTATUS ntStatus;
 
 	TCGetDosNameFromNumber (link, nDosDriveNo);
 	RtlInitUnicodeString (&objectName, link);
 	InitializeObjectAttributes (&objectAttributes, &objectName, OBJ_KERNEL_HANDLE | OBJ_CASE_INSENSITIVE, NULL, NULL);
 
-	if (NT_SUCCESS (ZwOpenSymbolicLinkObject (&handle, GENERIC_READ, &objectAttributes)))
+	ntStatus=ZwOpenSymbolicLinkObject (&handle, GENERIC_READ, &objectAttributes);
+	if (NT_SUCCESS (ntStatus))
 	{
 		ZwClose (handle);
 		return FALSE;
 	}
-
-	return TRUE;
+	else if (ntStatus == STATUS_OBJECT_NAME_NOT_FOUND)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 
@@ -3234,7 +3271,8 @@ BOOL IsVolumeAccessibleByCurrentUser (PEXTENSION volumeDeviceExtension)
 	}
 
 	SeCaptureSubjectContext (&subContext);
-	accessToken = SeQuerySubjectContextToken (&subContext);
+	SeLockSubjectContext(&subContext);
+	accessToken = getToken(&subContext);
 
 	if (!accessToken)
 		goto ret;
@@ -3252,6 +3290,7 @@ BOOL IsVolumeAccessibleByCurrentUser (PEXTENSION volumeDeviceExtension)
 	ExFreePool (tokenUser);		// Documented in newer versions of WDK
 
 ret:
+	SeUnlockSubjectContext(&subContext);
 	SeReleaseSubjectContext (&subContext);
 	return result;
 }
