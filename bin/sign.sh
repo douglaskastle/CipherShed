@@ -6,8 +6,15 @@ DIR="$(dirname "$0")/../"
 timestamp=0
 clean=0;
 
+[ "x$1" == "x" ] && mode=sha256 || mode=$1
+
 . "$DIR"/etc/sign.conf
 [ -e "$DIR"/etc/local/sign.conf ] && . "$DIR"/etc/local/sign.conf
+
+iCRT=CRT$mode
+eval mCRT=\$$iCRT
+
+[ "x${mCRT}" != "x" ] && CRT=$mCRT
 
 for d in "$DIR"/src/{Release,Debug}/Setup\ Files
 do
@@ -29,7 +36,7 @@ do
 	do
 		if [ ! -e "$i".presignbak ];
 		then
-			cp "$i" "$i".presignbak && "$SIGNTOOL" sign /v /n "$CRT" "$i" || exit $?
+			cp "$i" "$i".presignbak && "$SIGNTOOL" sign /fd $mode /v /f "$CRT" "$i" || exit $?
 			BUILDINSTALLER=1
 		fi
 	done
@@ -38,7 +45,7 @@ do
 	do
 		if [ ! -e "$i".presignbak ];
 		then
-			cp "$i" "$i".presignbak && "$SIGNTOOL" sign /v /ac "$MSXCRT" /n "$CRT" "$i" || exit $?
+			cp "$i" "$i".presignbak && "$SIGNTOOL" sign /fd $mode /ph /v /ac "$MSXCRT" /f "$CRT" "$i" || exit $?
 			BUILDINSTALLER=1
 		fi
 	done
@@ -56,7 +63,7 @@ do
 	do
 		if [ ! -e "$i".presignbak ];
 		then
-			cp "$i" "$i".presignbak && "$SIGNTOOL" sign /v /n "$CRT" "$i"
+			cp "$i" "$i".presignbak && "$SIGNTOOL" sign /fd $mode /v /f "$CRT" "$i"
 		fi
 	done
 	popd
