@@ -1381,13 +1381,13 @@ namespace CipherShed
 
 	DirectoryPath GraphicUserInterface::SelectDirectory (wxWindow *parent, const wxString &message, bool existingOnly) const
 	{
-		return DirectoryPath (::wxDirSelector (!message.empty() ? message :
+		return DirectoryPath ((wstring)(::wxDirSelector (!message.empty() ? message :
 #ifdef __WXGTK__
 			wxDirSelectorPromptStr,
 #else
-			L"",
+			wxString(L""),
 #endif
-			L"", wxDD_DEFAULT_STYLE | (existingOnly ? wxDD_DIR_MUST_EXIST : 0), wxDefaultPosition, parent));
+			wxString(L""), wxDD_DEFAULT_STYLE | (existingOnly ? wxDD_DIR_MUST_EXIST : 0), wxDefaultPosition, parent)));
 	}
 
 	FilePathList GraphicUserInterface::SelectFiles (wxWindow *parent, const wxString &caption, bool saveMode, bool allowMultiple, const list < pair <wstring, wstring> > &fileExtensions, const DirectoryPath &directory) const
@@ -1431,14 +1431,14 @@ namespace CipherShed
 		if (dialog.ShowModal() == wxID_OK)
 		{
 			if (!allowMultiple)
-				files.push_back (make_shared <FilePath> (dialog.GetPath()));
+				files.push_back (make_shared <FilePath> ((wstring)(dialog.GetPath())));
 			else
 			{
 				wxArrayString paths;
 				dialog.GetPaths (paths);
 
 				foreach (const wxString &path, paths)
-					files.push_back (make_shared <FilePath> (path));
+					files.push_back (make_shared <FilePath> ((wstring)path));
 			}
 		}
 
@@ -1448,7 +1448,7 @@ namespace CipherShed
 	FilePath GraphicUserInterface::SelectVolumeFile (wxWindow *parent, bool saveMode, const DirectoryPath &directory) const
 	{
 		list < pair <wstring, wstring> > extensions;
-		extensions.push_back (make_pair (L"tc", LangString["TC_VOLUMES"]));
+		extensions.push_back (make_pair (L"tc", LangString["TC_VOLUMES"].wc_str()));
 
 		FilePathList selFiles = Gui->SelectFiles (parent, LangString[saveMode ? "OPEN_NEW_VOLUME" : "OPEN_VOL_TITLE"], saveMode, false, extensions, directory);
 

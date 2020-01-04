@@ -35,6 +35,8 @@
 #include "../Common/Resource.h"
 #include "../Common/snprintf.h"
 
+#include "../Common/util/dll.h"
+
 using namespace CipherShed;
 
 #pragma warning( disable : 4201 )
@@ -520,7 +522,7 @@ err:
 		}
 
 		SetCurrentDirectory (SetupFilesDir);
-		SetCurrentDirectory ("Setup files");
+		SetCurrentDirectory ("Setupfiles");
 		h = FindFirstFile ("CipherShed User Guide.*.pdf", &f);
 		if (h != INVALID_HANDLE_VALUE)
 		{
@@ -2485,7 +2487,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, char *lpszComm
 		}
 
 		/* Try to load the System Restore dll. */
-		SystemRestoreDll = LoadLibrary ("srclient.dll");
+		SystemRestoreDll = LoadDLL_srclient();
 
 		if (!bUninstall)
 		{

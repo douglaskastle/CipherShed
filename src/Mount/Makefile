@@ -1,0 +1,16 @@
+TARGETDIR = ../${OutDir}/SetupFiles
+
+TARGETFILE = ${TARGETDIR}/CipherShed
+
+SOURCEFILE = ${OutDir}/CipherShed
+
+MKDIR_OUT_SETUPFILES = mkdir -p ${TARGETDIR}
+
+VCPostBuildEventTool: ${TARGETFILE}
+
+${TARGETFILE}: ${SOURCEFILE}
+	${MKDIR_OUT_SETUPFILES}
+	cp ${SOURCEFILE} ${TARGETFILE}
+
+.PHONY: VCPostBuildEventTool
+
